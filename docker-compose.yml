@@ -2,6 +2,7 @@ version: '3'
 services:
   mongo:
     image: mongo
+    restart: always
     ports:
       - "27018:27017"
     environment:
@@ -11,7 +12,8 @@ services:
       - mongo-data:/data/db
 
   api:
-    build: ./apiPoke
+    build: ./Pokemon
+    restart: always
     ports:
       - "3000:3000"
     depends_on:
@@ -21,16 +23,18 @@ services:
       MONGO_PASSWORD: toor
       MONGO_HOSTNAME: mongo
     volumes:
-      - ./apiPoke:/app 
+      - ./Pokemon:/usr/src/app 
 
   webapp:
-    build: ./mvc-pokemon
+    build: ./webapp
+    restart: always
     ports:
       - "8080:8080"
     depends_on:
       - api
     volumes:
-      - ./mvc-pokemon:/index
+      - ./webapp:/usr/src/app 
+      - ./webapp/public:/usr/src/app/public
 
 volumes:
   mongo-data:
