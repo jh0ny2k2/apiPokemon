@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const app = require("./app");
 
 const port = 3000;
-const ip = '3.232.243.1';
+const ip = '52.3.124.198';
 
 const urlMongo = "mongodb+srv://root:toor@apipokemon.at78ea7.mongodb.net/?retryWrites=true&w=majority";
 
