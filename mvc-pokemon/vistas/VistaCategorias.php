@@ -2,7 +2,7 @@
 
     namespace Pokemon\vistas;
     
-    class VistaInicio  {
+    class VistaCategoria  {
 
         public static function render($pokemons) {
 

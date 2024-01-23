@@ -17,6 +17,11 @@
         //Tratamiento de botones, forms, ...
         if (isset($_REQUEST["accion"])) {
 
+            if (strcmp($_REQUEST["accion"], "inicio") == 0) {
+
+                ApiController::mostrarInicio();
+            }
+
             if (strcmp($_REQUEST["accion"], "visualizarAddPokemon") == 0) {
 
                 ApiController::visualizarAddPokemon();
@@ -47,6 +52,12 @@
                 ApiController::realizarRegistroPokemon($nombre, $especie, $preevolucion,$evolucion,$tipo, $imagen, $altura, $peso, $vida, $puntosSalud, $nombreHabilidad1, $danioHabilidad1, $nombreHabilidad2, $danioHabilidad2, $nombreHabilidad3, $danioHabilidad3, $nombreHabilidad4, $danioHabilidad4);
             }
 
+            if(strcmp($_REQUEST["accion"], "verPokemon") == 0) {
+                $nombre =  $_REQUEST['nombre'];
+
+                ApiController::verPokemon($nombre);
+            }
+            
 
         } else {
             //Mostrar inicio

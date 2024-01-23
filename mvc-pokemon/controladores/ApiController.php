@@ -6,13 +6,13 @@
 
     use Pokemon\vistas\VistaInicio;
     use Pokemon\vistas\VistaAñadirPokemon;
-
+use Pokemon\vistas\VistaVerPokemon;
 
     class ApiController {
 
         public static function mostrarInicio() {
 
-            $uri = "http://localhost:3000/api/pokemon.json";       
+            $uri = "http://52.3.124.198:3000/api/pokemon";       
             $reqPrefs['http']['method'] = 'GET';
             $reqPrefs['http']['header'] = 'X-Auth-Token: ';
             $stream_context = stream_context_create($reqPrefs);
@@ -61,6 +61,15 @@
             }
 
         }  
+
+        public static function verPokemon ($nombre) {
+            $uri = "http://52.3.124.198:3000/api/pokemon/buscar/$nombre";       
+            $reqPrefs['http']['method'] = 'GET';
+            $reqPrefs['http']['header'] = 'X-Auth-Token: ';
+            $stream_context = stream_context_create($reqPrefs);
+            $resultado = file_get_contents($uri, false, $stream_context);
+            VistaVerPokemon::render($resultado);
+        }
 
 
 
