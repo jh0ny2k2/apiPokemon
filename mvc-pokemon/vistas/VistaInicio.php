@@ -4,7 +4,7 @@
     
     class VistaInicio  {
 
-        public static function render() {
+        public static function render($pokemons) {
 
             include("cabecera.php");
 

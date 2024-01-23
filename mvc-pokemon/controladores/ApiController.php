@@ -12,16 +12,12 @@
 
         public static function mostrarInicio() {
 
-            //$uri = "http://127.0.0.1:3000/api/pokemon";       
-            //$reqPrefs['http']['method'] = 'GET';
-            //$reqPrefs['http']['header'] = 'X-Auth-Token: ';
-            //$stream_context = stream_context_create($reqPrefs);
-            //$resultado = file_get_contents($uri, false, $stream_context);
-
-            //$apiUrl = 'http://localhost:3000/api/pokemon';
-            //$response = file_get_contents($apiUrl);
-            //$datos = json_decode($apiUrl, true);
-            vistaInicio::render();
+            $uri = "http://localhost:3000/api/pokemon.json";       
+            $reqPrefs['http']['method'] = 'GET';
+            $reqPrefs['http']['header'] = 'X-Auth-Token: ';
+            $stream_context = stream_context_create($reqPrefs);
+            $resultado = file_get_contents($uri, false, $stream_context);
+            vistaInicio::render($resultado);
         }
 
         public static function visualizarAddPokemon() {
