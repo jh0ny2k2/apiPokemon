@@ -6,7 +6,8 @@
 
     use Pokemon\vistas\VistaInicio;
     use Pokemon\vistas\VistaAñadirPokemon;
-use Pokemon\vistas\VistaVerPokemon;
+    use Pokemon\vistas\VistaCategorias;
+    use Pokemon\vistas\VistaVerPokemon;
 
     class ApiController {
 
@@ -27,7 +28,7 @@ use Pokemon\vistas\VistaVerPokemon;
 
         public static function realizarRegistroPokemon($nombre, $especie, $preevolucion,$evolucion,$tipo, $imagen, $altura, $peso, $vida, $puntosSalud, $nombreHabilidad1, $danioHabilidad1, $nombreHabilidad2, $danioHabilidad2, $nombreHabilidad3, $danioHabilidad3, $nombreHabilidad4, $danioHabilidad4) {
 
-            $apiUrl = "http://localhost:3000/api/pokemon";
+            $apiUrl = "http://52.3.124.198:3000/api/pokemon";
             $reqPrefs['http']['method'] = 'POST';
             $reqPrefs['http']['header'] = 'X-Auth-Token: ';
             $reqPrefs['http']['header'] = 'Content-Type: application/json';
@@ -54,11 +55,8 @@ use Pokemon\vistas\VistaVerPokemon;
             $context = stream_context_create($reqPrefs);
             $resPHP = file_get_contents($apiUrl, false, $context); 
 
-            if ($resPHP === FALSE) {
-                echo "Error al realizar la solicitud al servidor";
-            } else {
-                echo "Solicitud exitosa. Respuesta del servidor: " . $resPHP;
-            }
+
+            ApiController::mostrarInicio();
 
         }  
 
@@ -71,7 +69,40 @@ use Pokemon\vistas\VistaVerPokemon;
             VistaVerPokemon::render($resultado);
         }
 
+        public static function categoria () {
+            $resultado = 0;
 
+            VistaCategorias::render($resultado);
+        }
+
+        public static function buscarTipoPokemon($tipo){
+            $uri = "http://52.3.124.198:3000/api/pokemon/tipo/$tipo";       
+            $reqPrefs['http']['method'] = 'GET';
+            $reqPrefs['http']['header'] = 'X-Auth-Token: ';
+            $stream_context = stream_context_create($reqPrefs);
+            $resultado = file_get_contents($uri, false, $stream_context);
+
+            VistaCategorias::render($resultado);
+        }
+
+        public static function borrarPokemon($id) {
+            $uri = "http://52.3.124.198:3000/api/pokemon/$id";       
+            $reqPrefs['http']['method'] = 'DELETE';
+            $reqPrefs['http']['header'] = 'X-Auth-Token: ';
+            $stream_context = stream_context_create($reqPrefs);
+            $resultado = file_get_contents($uri, false, $stream_context);
+
+            ApiController::mostrarInicio();
+        }
+
+        public static function verModificarPokemon($nombre){
+            $uri = "http://52.3.124.198:3000/api/pokemon/buscar/$nombre";       
+            $reqPrefs['http']['method'] = 'GET';
+            $reqPrefs['http']['header'] = 'X-Auth-Token: ';
+            $stream_context = stream_context_create($reqPrefs);
+            $resultado = file_get_contents($uri, false, $stream_context);
+            VistaVerPokemon::render($resultado);
+        }
 
 
 

@@ -138,8 +138,8 @@
     </a>
 
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#" class="nav-link active bg-danger" aria-current="page">Inicio</a></li>
-      <li class="nav-item"><a href="#" class="nav-link  text-danger">Categorias</a></li>
+      <li class="nav-item"><a href="index.php?accion=inicio" class="nav-link active bg-danger" aria-current="page">Inicio</a></li>
+      <li class="nav-item"><a href="index.php?accion=categoria" class="nav-link  text-danger">Categorias</a></li>
 <?php
       if( isset($_SESSION['usuario'])) {
         echo '<li class="nav-item"><a href="index.php?accion=cerrarSesion" class="nav-link text-danger">Cerrar Sesion</a></li>';

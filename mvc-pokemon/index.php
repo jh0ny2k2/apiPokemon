@@ -22,6 +22,11 @@
                 ApiController::mostrarInicio();
             }
 
+            if (strcmp($_REQUEST["accion"], "categoria") == 0) {
+
+                ApiController::categoria();
+            }
+
             if (strcmp($_REQUEST["accion"], "visualizarAddPokemon") == 0) {
 
                 ApiController::visualizarAddPokemon();
@@ -57,8 +62,24 @@
 
                 ApiController::verPokemon($nombre);
             }
-            
 
+            if(strcmp($_REQUEST["accion"], "buscarCategoria") == 0) {
+                $tipo = $_REQUEST['tipo'];
+
+                ApiController::buscarTipoPokemon($tipo);
+            }
+
+            if(strcmp($_REQUEST["accion"], "borrarPokemon") == 0) {
+                $id = $_REQUEST['id'];
+
+                ApiController::borrarPokemon($id);
+            }
+            if(strcmp($_REQUEST["accion"], "verModificarPokemon") == 0) {
+                $nombre =  $_REQUEST['nombre'];
+
+                ApiController::verModificarPokemon($nombre);
+            }
+            
         } else {
             //Mostrar inicio
             ApiController::mostrarInicio();

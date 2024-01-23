@@ -9,9 +9,12 @@
             include("cabecera.php");
 
             echo '<div class="container ">';
+            
             $api = json_decode($pokemons);
+            
             echo '  <div class="row ">';
                 foreach ($api as $pokemon) {
+                    echo '<a href=index.php?accion=borrarPokemon&id='.$pokemon -> _id.'><button class="btn btn-danger mb-3">Eliminar Pokemon</button></a> <a href=index.php?accion=verModificarPokemon&id='.$pokemon -> nombre.'><button class="btn btn-danger mb-3">Modificar Pokemon</button></a>';
                     echo '<img class="" src="'.$pokemon -> imagen.'" alt="Imagen Pokemon">';
                     echo '      <p class="card-text text-uppercase">Nombre: ' . $pokemon->nombre . '</p>'; 
                     echo '      <p class="card-text text-uppercase">Evolucion: ' . $pokemon->evolucion . '</p>'; 
