@@ -4,12 +4,6 @@ services:
     build: ./apiPoke
     ports:
       - "3000:3000"
-    depends_on:
-      - mongo
-    environment:
-      MONGO_USERNAME: root
-      MONGO_PASSWORD: toor
-      MONGO_HOSTNAME: mongo
     volumes:
       - ./apiPoke:/usr/src/app 
 
