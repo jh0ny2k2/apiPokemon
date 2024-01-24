@@ -1,41 +1,21 @@
-version: '3'
+version: "3.3"
+
 services:
-  mongo:
-    image: mongo
-    restart: always
+  # Nginx
+  web:
+    container_name: nginx
+    image: nginx:latest
     ports:
-      - "27018:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: toor
+      - "8080:80"
     volumes:
-      - mongo-data:/data/db
+      - ./mvc-pokemon:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php-fpm
 
-  api:
-    build: ./apiPoke
-    restart: always
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
-    environment:
-      MONGO_USERNAME: root
-      MONGO_PASSWORD: toor
-      MONGO_HOSTNAME: mongo
+  # Configuración de php
+  php-fpm:
+    container_name: php
+    build: .
     volumes:
-      - ./apiPoke:/usr/src/app 
-
-  webapp:
-    build: ./mvc-pokemon
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - api
-    volumes:
-      - ./mvc-pokemon:/usr/src/app 
-      - ./mvc-pokemon/public:/usr/src/app/public
-
-volumes:
-  mongo-data:
-    driver: local
+      - ./mvc-pokemon:/var/www/html

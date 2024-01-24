@@ -80,7 +80,7 @@ async function getPokemonTipo (req, res) {
     const pokemonTipo = req.params.tipo;
 
     try {
-        const pokemons = await Pokemon.find({'_id': pokemonTipo});
+        const pokemons = await Pokemon.find({'tipo': pokemonTipo});
 
         if(!pokemons) {
             res.status(400).send({ "msg": "Error al obtener el pokemon"});
