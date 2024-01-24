@@ -74,11 +74,6 @@
 
                 ApiController::borrarPokemon($id);
             }
-            if(strcmp($_REQUEST["accion"], "verModificarPokemon") == 0) {
-                $nombre =  $_REQUEST['nombre'];
-
-                ApiController::verModificarPokemon($nombre);
-            }
             
         } else {
             //Mostrar inicio

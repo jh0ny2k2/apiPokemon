@@ -14,7 +14,7 @@
             
             echo '  <div class="row ">';
                 foreach ($api as $pokemon) {
-                    echo '<a href=index.php?accion=borrarPokemon&id='.$pokemon -> _id.'><button class="btn btn-danger mb-3">Eliminar Pokemon</button></a> <a href=index.php?accion=verModificarPokemon&id='.$pokemon -> nombre.'><button class="btn btn-danger mb-3">Modificar Pokemon</button></a>';
+                    echo '<a href=index.php?accion=borrarPokemon&id='.$pokemon -> _id.'><button class="btn btn-danger mb-3">Eliminar Pokemon</button></a>';
                     echo '<img class="" src="'.$pokemon -> imagen.'" alt="Imagen Pokemon">';
                     echo '      <p class="card-text text-uppercase">Nombre: ' . $pokemon->nombre . '</p>'; 
                     echo '      <p class="card-text text-uppercase">Evolucion: ' . $pokemon->evolucion . '</p>'; 
@@ -29,15 +29,7 @@
                         echo '      <p class="card-text">TIPO: '. $pokemon -> tipo[0].' | '. $pokemon -> tipo[1].'</p>';
                     }
                     
-                    if (!isset($pokemon -> habilidades[2] )) {
-                        echo '      <p class="card-text">habilidades: <br> Nombre: '. $pokemon -> habilidades[0] -> nombre.' | Daño: '. $pokemon -> habilidades[0] -> danio.'
-                                                                        <br> Nombre: '. $pokemon -> habilidades[1] -> nombre.' | Daño: '. $pokemon -> habilidades[1] -> danio.'</p>';
-                    } else {
-                        echo '      <p class="card-text">habilidades: <br> Nombre: '. $pokemon -> habilidades[0] -> nombre.' | Daño: '. $pokemon -> habilidades[0] -> danio.'
-                                                                        <br> Nombre: '. $pokemon -> habilidades[1] -> nombre.' | Daño: '. $pokemon -> habilidades[1] -> danio.' 
-                                                                        <br> Nombre: '. $pokemon -> habilidades[2] -> nombre.' | Daño: '. $pokemon -> habilidades[2] -> danio.'
-                                                                        <br> Nombre: '. $pokemon -> habilidades[3] -> nombre.' | Daño: '. $pokemon -> habilidades[3] -> danio.'</p>';
-                    }
+                    
 
                 }
             echo '  </div>';
