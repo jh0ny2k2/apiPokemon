@@ -13,7 +13,7 @@ services:
     links:
       - php-fpm
 
-  # Configuración de php
+  # Configuración de php .
   php-fpm:
     container_name: php
     build: .
