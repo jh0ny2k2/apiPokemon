@@ -1,8 +1,6 @@
 const express = require("express");
 const pokemonControllers = require("../controllers/pokemonControllers");
 const api = express.Router();
-const multer = require('multer');
-const upload = multer({ dest: 'images/' });
 
 api.post("/pokemon", pokemonControllers.createPokemon); // CREAR POKEMON
 api.get("/pokemon", pokemonControllers.getPokedex); // BUSCAR POKEMONS
